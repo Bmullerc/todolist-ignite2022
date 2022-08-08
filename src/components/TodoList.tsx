@@ -1,24 +1,22 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { PlusCircle } from "phosphor-react";
 
-interface Todo {
+interface TodoProps {
   id: number,
   name: string,
   complete: boolean
 }
 
 export function TodoList() {
-  const [todos, setTodos] = useState<any[]>([])
+  const [todos, setTodos] = useState<TodoProps[]>([])
   const [inputValue, setInputValue] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
 
   function handleAddTask() {
-    const taskName = inputRef.current?.value
-    if (taskName === '') return
+    if (inputValue === '') return
     setTodos(prevTodos => {
       return [...prevTodos, {
         id: Date.now(),
-        name: taskName,
+        name: inputValue,
         complete: false,
       }]
     })
@@ -33,7 +31,6 @@ export function TodoList() {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.currentTarget.value)}
-          ref={inputRef}
           placeholder="Adicione uma nova Tarefa"
           className="h-[54px] rounded-lg w-full px-4 bg-gray-500 text-gray-300 outline-none active:outline-2 focus:text-gray-100 focus:outline-theme-purple-dark"
         />
@@ -48,8 +45,8 @@ export function TodoList() {
 
       <div className="w-full">
         <div className="flex w-full justify-between text-gray-100 border-b-2">
-          <p>Tarefas Criadas <span>5</span></p>
-          <p>Concluídas <span>0</span></p>
+          <p>Tarefas Criadas <span>{todos.length}</span></p>
+          <p>Concluídas <span>{todos.filter(todo => !todo.complete).length}</span></p>
         </div>
 
         {
