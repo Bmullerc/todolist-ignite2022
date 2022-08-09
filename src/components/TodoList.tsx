@@ -50,7 +50,7 @@ export function TodoList() {
   }
 
   return (
-    <main className="flex flex-col justify-center items-center m-auto max-w-3xl">
+    <main className="flex flex-col justify-center items-center m-auto max-w-3xl pb-28">
 
       <div className="-mt-8 flex w-full flex-1 justify-center items-center gap-2">
         <input
