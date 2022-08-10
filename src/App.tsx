@@ -3,7 +3,7 @@ import { TodoList } from "./components/TodoList";
 
 export function App() {
   return (
-    <div className="bg-gray-600">
+    <div className="bg-gray-600 min-h-screen">
       <Header />
       <TodoList />
     </div>
